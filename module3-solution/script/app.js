@@ -15,7 +15,7 @@
         this.getMatchedMenuItems = function(searchTerm) {
             MenuSearchService.getMatchedMenuItems(searchTerm).then(function(data) {
                 that.found = data;
-                if (data.length == 0) {
+                if (data.length == 0 || searchTerm == '') {
                     that.displayError = true;
                 } else {
                     that.displayError = false

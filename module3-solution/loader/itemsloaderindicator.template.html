@@ -1,6 +1,6 @@
 <div class="clearfix"></div>
 <div class="loader"></div>
-<ul>
+<ul ng-if="!items.displayError">
     <li ng-repeat="item in items.found">
         <span>Name:{{item.name}} </br>Short name:{{item.short_name}}</br> Description:{{item.description}}</span><button ng-click="items.onRemove({index: $index})">Don't want this one</button>
     </li>
