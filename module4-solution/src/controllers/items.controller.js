@@ -1,8 +1,7 @@
 (function() {
     angular.module('data').controller('itemsController', itemsController);
 
-    itemsController.$inject = ['MenuDataService'];
-    function itemsController(MenuDataService) {
-
+    function itemsController(items) {
+        this.items = items;
     }
 })();

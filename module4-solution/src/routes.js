@@ -7,12 +7,15 @@
         $urlRouterProvider.otherwise('/');
 
         $stateProvider
-
-            .state('home',{
+            .state('root', {
+                url: '',
+                templateUrl: 'src/templates/root.state.tpl.html'
+            })
+            .state('root.home',{
                 url: '/',
                 templateUrl: 'src/templates/home.state.tpl.html'
             })
-            .state('categories', {
+            .state('root.categories', {
                 url: '/categories',
                 templateUrl: 'src/templates/categories.state.tpl.html',
                 controller: 'categoriesController as catCtrl',
@@ -22,9 +25,15 @@
                     }]
                 }
             })
-            .state('items', {
-                url: '/categories/{category}',
-                templateUrl: 'src/templates'
+            .state('root.items', {
+                url: '/items/{category}',
+                templateUrl: 'src/templates/items.state.tpl.html',
+                controller: "itemsController as itemCtrl",
+                resolve: {
+                    items: ['$stateParams', 'MenuDataService', function($stateParams, MenuDataService) {
+                        return MenuDataService.getItemsForCategory($stateParams.category)
+                    }]
+                }
             })
 
     }

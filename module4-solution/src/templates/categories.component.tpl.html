@@ -1,4 +1,3 @@
-Categories component template
 <ul>
-    <li ng-repeat="category in $ctrl.list"><a ui-sref="categories({category: $index})"></a></li>
+    <li ng-repeat="category in $ctrl.list"><a ui-sref="root.items({category: category.short_name})">{{category.name}}</a></li>
 </ul>
