@@ -1,0 +1,2 @@
+<button ng-repeat="tb in $ctrl.tab" ng-click="$ctrl.switchTab($index)">{{tb.title}}</button>
+<div ng-repeat="tb in $ctrl.tab" ng-if="tb.isShow">{{tb.content}}</div>
