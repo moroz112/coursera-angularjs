@@ -7,6 +7,7 @@ angular.module('common')
 
 MenuService.$inject = ['$http', 'ApiPath'];
 function MenuService($http, ApiPath) {
+  var userPreferences;
   var service = this;
 
   service.getCategories = function () {
@@ -26,6 +27,16 @@ function MenuService($http, ApiPath) {
       return response.data;
     });
   };
+  service.getUserPreferences = function() {
+    var config = {};
+    if(userPreferences) {
+      config.params = {'category': userPreferences};
+
+      return $http.get(ApiPath + '/menu_items.json', config).then(function(response) {
+        return response.data
+      })
+    }
+  }
 
 }
 
