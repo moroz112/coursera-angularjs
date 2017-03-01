@@ -10,7 +10,7 @@ function MenuService($http, ApiPath) {
   var that = this;
   var service = this;
   that.userPreferences = '';
-  var userPreferences;
+  this.userPreferences;
 
   service.getCategories = function () {
     return $http.get(ApiPath + '/categories.json').then(function (response) {
@@ -29,19 +29,14 @@ function MenuService($http, ApiPath) {
       return response.data;
     });
   };
-  service.checkRequest = function() {
-      return $http.get(ApiPath + '/menu_items/' + that.userPreferences + '.json').then(function(response) {
-          return response.data
-      })
-  };
   service.setUserPreferences = function() {
 
-    userPreferences = $http.get(ApiPath + '/menu_items/' + that.userPreferences + '.json').then(function(response) {
+    that.userPreferences = $http.get(ApiPath + '/menu_items/' + that.userPreferences + '.json').then(function(response) {
       return response.data
     })
   };
   service.getUserPreferences = function() {
-      return userPreferences;
+      return that.userPreferences;
   }
 
 }

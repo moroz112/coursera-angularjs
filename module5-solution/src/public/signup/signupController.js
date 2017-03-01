@@ -21,12 +21,16 @@
 
         function onWrongResponse(ev, data) {
             that.errorFormSubmit = data.on;
-            that.formSubmitted = !data.on
+            that.formSubmitted = !data.on;
+            if(data.on) {
+                MenuService.userPreferences = undefined;
+            }
+
         };
         this.submit = function() {
             console.log('submit');
             MenuService.userPreferences = this.userPreferences;
-            MenuService.checkRequest();
+            MenuService.setUserPreferences();
         }
     }
 })();
