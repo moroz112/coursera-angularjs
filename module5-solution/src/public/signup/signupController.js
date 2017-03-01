@@ -14,22 +14,19 @@
 
         this.$onInit = function() {
             listenerBad = $scope.$on('wrong:response', onWrongResponse);
-            listenerGood =$scope.$on('good:response', onGoodResponse);
         };
         this.$onDestroy = function() {
             listenerBad();
         };
 
-        function onWrongResponse() {
-            that.errorFormSubmit = true;
+        function onWrongResponse(ev, data) {
+            that.errorFormSubmit = data.on;
+            that.formSubmitted = !data.on
         };
-        function onGoodResponse() {
-            that.formSubmitted = true;
-        }
         this.submit = function() {
             console.log('submit');
             MenuService.userPreferences = this.userPreferences;
-            MenuService.getUserPreferences();
+            MenuService.checkRequest();
         }
     }
 })();

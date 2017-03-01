@@ -9,7 +9,8 @@ MenuService.$inject = ['$http', 'ApiPath'];
 function MenuService($http, ApiPath) {
   var that = this;
   var service = this;
-  that.userPreferences = 'someNotExistingCat';
+  that.userPreferences = '';
+  var userPreferences;
 
   service.getCategories = function () {
     return $http.get(ApiPath + '/categories.json').then(function (response) {
@@ -28,15 +29,19 @@ function MenuService($http, ApiPath) {
       return response.data;
     });
   };
-  service.getUserPreferences = function() {
-    var config = {};
-    // if(that.userPreferences) {
-      config.params = {'category': that.userPreferences};
-    // }
+  service.checkRequest = function() {
+      return $http.get(ApiPath + '/menu_items/' + that.userPreferences + '.json').then(function(response) {
+          return response.data
+      })
+  };
+  service.setUserPreferences = function() {
 
-    return $http.get(ApiPath + '/menu_items.json', config).then(function(response) {
+    userPreferences = $http.get(ApiPath + '/menu_items/' + that.userPreferences + '.json').then(function(response) {
       return response.data
     })
+  };
+  service.getUserPreferences = function() {
+      return userPreferences;
   }
 
 }

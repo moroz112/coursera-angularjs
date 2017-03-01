@@ -7,6 +7,6 @@
 
     function InfoController(userPreferences) {
         this.userPreferences = userPreferences;
-        this.isSignUp = !this.userPreferences.category;
+        this.isSignUp = !userPreferences;
     }
 })();

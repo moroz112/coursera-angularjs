@@ -1,7 +1,7 @@
 <div class="form-container">
     <p ng-if="signupCtrl.errorFormSubmit">No such menu number exists</p>
     <p ng-if="signupCtrl.formSubmitted">Your information has been saved</p>
-    <fieldset ng-if="!signupCtrl.formSubmitted && !signupCtrl.errorFormSubmit">
+    <fieldset>
         <form name='regForm'>
             <input type="text" name="firstName" required maxlength="10" minlength="4" placeholder="First name" ng-model="signupCtrl.firstName"></br>
             <span ng-if="(regForm.firstName.$error.minlength || regForm.firstName.$error.required || regForm.firstName.$error.maxlength) && regForm.firstName.$touched">

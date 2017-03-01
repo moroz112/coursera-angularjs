@@ -1,4 +1,4 @@
 <div class="container">
     <div ng-if="infoCtrl.isSignUp">Not Signed Up Yet. <a ui-sref="public.signup">Sign up</a> Now!</div>
-    <info ng-repeat="item in infoCtrl.userPreferences.menu_items" preferences="item"></info>
+    <info ng-if="!infoCtrl.isSignUp" preferences="infoCtrl.userPreferences"></info>
 </div>

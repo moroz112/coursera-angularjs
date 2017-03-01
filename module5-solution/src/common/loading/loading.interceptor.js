@@ -17,7 +17,6 @@ function LoadingHttpInterceptor($rootScope, $q) {
   var loadingCount = 0;
   var loadingEventName = 'spinner:activate';
   var wrongResponse = 'wrong:response';
-  var goodResponse = 'good:response';
 
   return {
     request: function (config) {
@@ -34,12 +33,8 @@ function LoadingHttpInterceptor($rootScope, $q) {
       if (--loadingCount === 0) {
         $rootScope.$broadcast(loadingEventName, {on: false});
       }
-      if(!response.data.category) {
-        $rootScope.$broadcast(wrongResponse);
-      } else {
-        $rootScope.$broadcast(goodResponse)
-      }
 
+        $rootScope.$broadcast(wrongResponse, {on: false});
       return response;
     },
 
@@ -47,6 +42,7 @@ function LoadingHttpInterceptor($rootScope, $q) {
       if (--loadingCount === 0) {
         $rootScope.$broadcast(loadingEventName, {on: false});
       }
+      $rootScope.$broadcast(wrongResponse, {on: true});
 
       return $q.reject(response);
     }
