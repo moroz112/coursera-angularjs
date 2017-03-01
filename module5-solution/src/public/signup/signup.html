@@ -1,0 +1,26 @@
+<div class="form-container">
+    <p ng-if="signupCtrl.errorFormSubmit">No such menu number exists</p>
+    <p ng-if="signupCtrl.formSubmitted">Your information has been saved</p>
+    <fieldset ng-if="!signupCtrl.formSubmitted && !signupCtrl.errorFormSubmit">
+        <form name='regForm'>
+            <input type="text" name="firstName" required maxlength="10" minlength="4" placeholder="First name" ng-model="signupCtrl.firstName"></br>
+            <span ng-if="(regForm.firstName.$error.minlength || regForm.firstName.$error.required || regForm.firstName.$error.maxlength) && regForm.firstName.$touched">
+                First name should not be empty or less than 4 characters or more than 10
+            </span>
+            </br>
+            <input type="text" name="lastName" maxlength="10" minlength="4" required placeholder="Last name" ng-model="signupCtrl.lastName"></br>
+            <span ng-if="(regForm.lastName.$error.minlength || regForm.lastName.$error.required || regForm.lastName.$error.maxlength) && regForm.lastName.$touched">
+                Last name should not be empty or less than 4 characters or more than 10
+            </span>
+            </br>
+            <input type="email" name="email" required placeholder="Enter your email" ng-model="signupCtrl.email"></br>
+            <span ng-if="regForm.email.$error.required && regForm.email.$touched">
+                Please enter valid email
+            </span>
+            </br>
+            <input type="text" name="preferences" placeholder="Users preferences" ng-model="signupCtrl.userPreferences">
+            </br>
+            <button class="submit" ng-disabled="regForm.$invalid" ng-click="signupCtrl.submit()">Submit</button>
+        </form>
+</fieldset>
+</div>

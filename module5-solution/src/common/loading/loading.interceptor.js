@@ -16,6 +16,8 @@ function LoadingHttpInterceptor($rootScope, $q) {
 
   var loadingCount = 0;
   var loadingEventName = 'spinner:activate';
+  var wrongResponse = 'wrong:response';
+  var goodResponse = 'good:response';
 
   return {
     request: function (config) {
@@ -31,6 +33,11 @@ function LoadingHttpInterceptor($rootScope, $q) {
     response: function (response) {
       if (--loadingCount === 0) {
         $rootScope.$broadcast(loadingEventName, {on: false});
+      }
+      if(!response.data.category) {
+        $rootScope.$broadcast(wrongResponse);
+      } else {
+        $rootScope.$broadcast(goodResponse)
       }
 
       return response;

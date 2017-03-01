@@ -6,6 +6,7 @@
     InfoController.$inject = ['userPreferences'];
 
     function InfoController(userPreferences) {
-        this.userPreferences = userPreferences
+        this.userPreferences = userPreferences;
+        this.isSignUp = !this.userPreferences.category;
     }
 })();

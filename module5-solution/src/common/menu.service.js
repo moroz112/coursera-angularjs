@@ -7,8 +7,9 @@ angular.module('common')
 
 MenuService.$inject = ['$http', 'ApiPath'];
 function MenuService($http, ApiPath) {
-  var userPreferences;
+  var that = this;
   var service = this;
+  that.userPreferences = 'someNotExistingCat';
 
   service.getCategories = function () {
     return $http.get(ApiPath + '/categories.json').then(function (response) {
@@ -29,13 +30,13 @@ function MenuService($http, ApiPath) {
   };
   service.getUserPreferences = function() {
     var config = {};
-    if(userPreferences) {
-      config.params = {'category': userPreferences};
+    // if(that.userPreferences) {
+      config.params = {'category': that.userPreferences};
+    // }
 
-      return $http.get(ApiPath + '/menu_items.json', config).then(function(response) {
-        return response.data
-      })
-    }
+    return $http.get(ApiPath + '/menu_items.json', config).then(function(response) {
+      return response.data
+    })
   }
 
 }
