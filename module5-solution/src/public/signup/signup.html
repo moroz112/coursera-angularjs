@@ -14,10 +14,18 @@
             </span>
             </br>
             <input type="email" name="email" required placeholder="Enter your email" ng-model="signupCtrl.email"></br>
-            <span ng-if="regForm.email.$error.required && regForm.email.$touched">
+            <span ng-if="regForm.email.$invalid && regForm.email.$touched">
                 Please enter valid email
             </span>
             </br>
+            <input type="text" name="phone" required placeholder="Phone ###-###-####"
+                   ng-model="reg.user.phone"
+                   pattern="(\d{3})-(\d{3})-(\d{4})">
+            </br>
+            <span ng-if="regForm.phone.$invalid && regForm.phone.$touched">
+            Phone must be in the format ###-###-####.
+          </span>
+            <br>
             <input type="text" name="preferences" placeholder="Users preferences" ng-model="signupCtrl.userPreferences">
             </br>
             <button class="submit" ng-disabled="regForm.$invalid" ng-click="signupCtrl.submit()">Submit</button>
