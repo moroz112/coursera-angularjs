@@ -10,7 +10,10 @@ function MenuService($http, ApiPath) {
   var that = this;
   var service = this;
   that.userPreferences = '';
-  this.userPreferences;
+  that.firstName;
+  that.lastName;
+  that.email;
+  that.phone;
 
   service.getCategories = function () {
     return $http.get(ApiPath + '/categories.json').then(function (response) {
@@ -33,6 +36,8 @@ function MenuService($http, ApiPath) {
 
     that.userPreferences = $http.get(ApiPath + '/menu_items/' + that.userPreferences + '.json').then(function(response) {
       return response.data
+    }, function(error) {
+        return error
     })
   };
   service.getUserPreferences = function() {

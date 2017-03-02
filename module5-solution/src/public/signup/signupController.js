@@ -30,6 +30,10 @@
         this.submit = function() {
             console.log('submit');
             MenuService.userPreferences = this.userPreferences;
+            MenuService.firstName = this.firstName;
+            MenuService.lastName = this.lastName;
+            MenuService.email = this.email;
+            MenuService.phone = this.phone;
             MenuService.setUserPreferences();
         }
     }
